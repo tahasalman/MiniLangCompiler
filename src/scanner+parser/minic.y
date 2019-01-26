@@ -73,7 +73,7 @@ void yyerror(const char *s) {
 %left tUMINUS tUNEGATE
 
 /* Start token (by default if this is missing it takes the first production */
-%start exp
+%start program
 
 /* Generate the yylloc structure used for storing line numbers with tokens */
 %locations
@@ -84,19 +84,19 @@ void yyerror(const char *s) {
 
 program: dcls | stmts ;
 dcls: %empty | dcl dcls ;
-stmts: %empty | stmt stmts
+stmts: %empty | stmt stmts ;
 dcl: tVAR tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON |
 	tVAR tIDENTIFIER tCOLON type tSEMICOLON ;
 type: tINT | tFLOAT | tSTRING | tBOOLEAN ;
-stmt: tREAD tLEFTPAREN tVAR tRIGHTPAREN tSEMICOLON |
+stmt: tREAD tLEFTPAREN tIDENTIFIER tRIGHTPAREN tSEMICOLON |
 	tPRINT tLEFTPAREN exp tRIGHTPAREN tSEMICOLON |
 	tVAR tASSIGN exp tSEMICOLON |
 	tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE stmts tLEFTBRACE |
 	ifstmt ;
-ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE stmts tRIGHTBRACE elifstmts elsestmt
-elsestmt: %empty | tELSE tLEFTBRACE stmts tRIGHTBRACE
-elifstmts: %empty | elifstmt elifstmts 
-elifstmt: tELSE tIF tLEFTPAREN exp tRIGHTPAREN tRIGHTBRACE stmts tLEFTBRACE 
+ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE stmts tRIGHTBRACE elifstmts elsestmt ;
+elsestmt: %empty | tELSE tLEFTBRACE stmts tRIGHTBRACE ;
+elifstmts: %empty | elifstmt elifstmts ;
+elifstmt: tELSE tIF tLEFTPAREN exp tRIGHTPAREN tRIGHTBRACE stmts tLEFTBRACE ; 
 exp: tIDENTIFIER |
 	tINTVAL | tFLOATVAL | tSTRINGVAL | tTRUE | tFALSE |
 	tMINUS exp %prec tUMINUS | tNEGATE exp %prec tUNEGATE |
@@ -105,6 +105,7 @@ exp: tIDENTIFIER |
 	exp tGREATEREQUALS exp | exp tLESSEQUALS exp | exp tGREATER exp | exp tLESS exp |
 	exp tEQUALS exp | exp tNOTEQUALS exp |
 	exp tAND exp | exp tOR exp 
+	;
 
 
 %%

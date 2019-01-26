@@ -9,6 +9,6 @@ parser.tab.c parser.tab.h: minic.y
 	bison --yacc --defines=parser.tab.c --output=parser.tab.h minic.y
 
 lex.yy.c: minic.l parser.tab.h
-	flex miniv.l
+	flex minic.l
 clean:
-rm parser.tab.* lex.yy.*; rm *.o
+	rm parser.tab.* lex.yy.*; rm *.o
