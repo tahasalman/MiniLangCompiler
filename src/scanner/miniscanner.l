@@ -27,58 +27,50 @@
 %%
 [\r\n]+
 [ \t]+      
-":"			printf("tCOLON\n");
-";"			printf("tSEMICOLON\n");
-"+"         printf("tPLUS\n");
-"-"         printf("tMINUS\n");
-"*"         printf("tMULTIPLY\n");
-"/"         printf("tDIVIDE\n");
-"("         printf("tLEFTPAREN\n");
-")"         printf("tRIGHTPAREN\n");
-"{"			printf("tRIGHTBRACE\n");
-"}"			printf("tLEFTBRACE\n");
-"="			printf("tASSIGN\n");
-"!"			printf("tNEGATE\n");
-"=="		printf("tEQUALS\n");
-"!="		printf("tNOTEQUALS\n");
-">="		printf("tGREATEREQUALS\n");
-"<="		printf("tLESSEQUALS\n");
-">"			printf("tGREATER\n");
-"<"			printf("tLESS\n");
-"&&"		printf("tAND\n");
-"||"		printf("tOR\n");
+":"			{;}
+";"			{;}
+"+"         {;}
+"-"         {;}
+"*"         {;}
+"/"         {;}
+"("         {;}
+")"         {;}
+"{"			{;}
+"}"			{;}
+"="			{;}
+"!"			{;}
+"=="		{;}
+"!="		{;}
+">="		{;}
+"<="		{;}
+">"			{;}
+"<"			{;}
+"&&"		{;}
+"||"		{;}
 
 
-"var"		printf("tVAR\n");
-"float"		printf("tFLOAT\n");
-"int"		printf("tINT\n");
-"string"	printf("tSTRING\n");
-"boolean"	printf("tBOOLEAN\n");
-"if"		printf("tIF\n");
-"else"		printf("tELSE\n");
-"while"		printf("tWHILE\n");
-"read"		printf("tREAD\n");
-"print"		printf("tPRINT\n");
-"true"		printf("tTRUE\n");
-"false"		printf("tFALSE\n");
+"var"		{;}
+"float"		{;}
+"int"		{;}
+"string"	{;}
+"boolean"	{;}
+"if"		{;}
+"else"		{;}
+"while"		{;}
+"read"		{;}
+"print"		{;}
+"true"		{;}
+"false"		{;}
 
 [/][/].*
 
-\"[^"\\]*(?s:\\.[^"\\]*)*\" {
-	printf("tSTRINGVAL(%s)\n", yytext);
-}
+\"[^"\\]*(?s:\\.[^"\\]*)*\" {;}
 
-(0|([1-9][0-9]*))\.[0-9]+ {
-	printf("tFLOATVAL(%s)\n", yytext);
-}
+(0|([1-9][0-9]))*\.[0-9][0-9]* {;}
 
-0|([1-9][0-9]*) {
-	    printf ("tINTVAL(%s)\n", yytext);
-}
+0|([1-9][0-9]*) {;}
 
-[a-zA-Z_][a-zA-Z0-9_]* {
-	    printf ("tIDENTIFIER(%s)\n", yytext);
-}
+[a-zA-Z_][a-zA-Z0-9_]* {;}
 
 
 
@@ -91,5 +83,7 @@ int main()
 	// Invoke the scanner using yylex(). Since there is no parser, this will execute until
 	// the end of file
 	yylex();
+        printf("OK\n");
 	return 0;
 }
+
