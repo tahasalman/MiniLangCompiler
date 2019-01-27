@@ -1,5 +1,6 @@
+#line 2 "src/tokens/lex.yy.c"
 
-#line 3 "lex.yy.c"
+#line 4 "src/tokens/lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -558,14 +559,14 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "minitokens.l"
+#line 1 "src/tokens/minitokens.l"
 /* The first section of a flex file contains:
  *    1. A code section for includes and other arbitrary C code. Copied to the scanner verbatim
  *    2. Helper definitions for regexes
  *    3. Scanner options
  */
 /* Code section */
-#line 9 "minitokens.l"
+#line 9 "src/tokens/minitokens.l"
 #include <stdio.h>
 /* Scanner options, line number generation */
 /* The second section of a flex file contains the regular expressions, using helper definitions
@@ -579,7 +580,7 @@ char *yytext;
  *    - yytext: Matched text
  *    - yylineno: Convenience variable for the line number provided by %option yylineno
  */
-#line 583 "lex.yy.c"
+#line 584 "src/tokens/lex.yy.c"
 
 #define INITIAL 0
 
@@ -797,9 +798,9 @@ YY_DECL
 		}
 
 	{
-#line 27 "minitokens.l"
+#line 27 "src/tokens/minitokens.l"
 
-#line 803 "lex.yy.c"
+#line 804 "src/tokens/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -869,219 +870,219 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 28 "minitokens.l"
+#line 28 "src/tokens/minitokens.l"
 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 29 "minitokens.l"
+#line 29 "src/tokens/minitokens.l"
 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 30 "minitokens.l"
+#line 30 "src/tokens/minitokens.l"
 printf("tCOLON\n");
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 31 "minitokens.l"
+#line 31 "src/tokens/minitokens.l"
 printf("tSEMICOLON\n");
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 32 "minitokens.l"
+#line 32 "src/tokens/minitokens.l"
 printf("tPLUS\n");
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 33 "minitokens.l"
+#line 33 "src/tokens/minitokens.l"
 printf("tMINUS\n");
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 34 "minitokens.l"
+#line 34 "src/tokens/minitokens.l"
 printf("tMULTIPLY\n");
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 35 "minitokens.l"
+#line 35 "src/tokens/minitokens.l"
 printf("tDIVIDE\n");
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 36 "minitokens.l"
+#line 36 "src/tokens/minitokens.l"
 printf("tLEFTPAREN\n");
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 37 "minitokens.l"
+#line 37 "src/tokens/minitokens.l"
 printf("tRIGHTPAREN\n");
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 38 "minitokens.l"
+#line 38 "src/tokens/minitokens.l"
 printf("tRIGHTBRACE\n");
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 39 "minitokens.l"
+#line 39 "src/tokens/minitokens.l"
 printf("tLEFTBRACE\n");
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 40 "minitokens.l"
+#line 40 "src/tokens/minitokens.l"
 printf("tASSIGN\n");
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 41 "minitokens.l"
+#line 41 "src/tokens/minitokens.l"
 printf("tNEGATE\n");
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 42 "minitokens.l"
+#line 42 "src/tokens/minitokens.l"
 printf("tEQUALS\n");
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 43 "minitokens.l"
+#line 43 "src/tokens/minitokens.l"
 printf("tNOTEQUALS\n");
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 44 "minitokens.l"
+#line 44 "src/tokens/minitokens.l"
 printf("tGREATEREQUALS\n");
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 45 "minitokens.l"
+#line 45 "src/tokens/minitokens.l"
 printf("tLESSEQUALS\n");
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 46 "minitokens.l"
+#line 46 "src/tokens/minitokens.l"
 printf("tGREATER\n");
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 47 "minitokens.l"
+#line 47 "src/tokens/minitokens.l"
 printf("tLESS\n");
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 48 "minitokens.l"
+#line 48 "src/tokens/minitokens.l"
 printf("tAND\n");
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 49 "minitokens.l"
+#line 49 "src/tokens/minitokens.l"
 printf("tOR\n");
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 52 "minitokens.l"
+#line 52 "src/tokens/minitokens.l"
 printf("tVAR\n");
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 53 "minitokens.l"
+#line 53 "src/tokens/minitokens.l"
 printf("tFLOAT\n");
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 54 "minitokens.l"
+#line 54 "src/tokens/minitokens.l"
 printf("tINT\n");
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 55 "minitokens.l"
+#line 55 "src/tokens/minitokens.l"
 printf("tSTRING\n");
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 56 "minitokens.l"
+#line 56 "src/tokens/minitokens.l"
 printf("tBOOLEAN\n");
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 57 "minitokens.l"
+#line 57 "src/tokens/minitokens.l"
 printf("tIF\n");
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 58 "minitokens.l"
+#line 58 "src/tokens/minitokens.l"
 printf("tELSE\n");
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 59 "minitokens.l"
+#line 59 "src/tokens/minitokens.l"
 printf("tWHILE\n");
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 60 "minitokens.l"
+#line 60 "src/tokens/minitokens.l"
 printf("tREAD\n");
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 61 "minitokens.l"
+#line 61 "src/tokens/minitokens.l"
 printf("tPRINT\n");
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 62 "minitokens.l"
+#line 62 "src/tokens/minitokens.l"
 printf("tTRUE\n");
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 63 "minitokens.l"
+#line 63 "src/tokens/minitokens.l"
 printf("tFALSE\n");
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 65 "minitokens.l"
+#line 65 "src/tokens/minitokens.l"
 
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 67 "minitokens.l"
+#line 67 "src/tokens/minitokens.l"
 {
 	printf("tSTRINGVAL(%s)\n", yytext);
 }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 71 "minitokens.l"
+#line 71 "src/tokens/minitokens.l"
 {
 	printf("tFLOATVAL(%s)\n", yytext);
 }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 75 "minitokens.l"
+#line 75 "src/tokens/minitokens.l"
 {
 	    printf ("tINTVAL(%s)\n", yytext);
 }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 79 "minitokens.l"
+#line 79 "src/tokens/minitokens.l"
 {
 	    printf ("tIDENTIFIER(%s)\n", yytext);
 }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 85 "minitokens.l"
+#line 85 "src/tokens/minitokens.l"
 { fprintf (stderr, "Error: (line %d) unexpected character '%s'\n", yylineno, yytext); exit(1); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 86 "minitokens.l"
+#line 86 "src/tokens/minitokens.l"
 ECHO;
 	YY_BREAK
-#line 1085 "lex.yy.c"
+#line 1086 "src/tokens/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2094,7 +2095,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 86 "minitokens.l"
+#line 86 "src/tokens/minitokens.l"
 
 
 

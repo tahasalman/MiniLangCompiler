@@ -1,5 +1,6 @@
+#line 2 "src/scanner/lex.yy.c"
 
-#line 3 "lex.yy.c"
+#line 4 "src/scanner/lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -561,14 +562,14 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "miniscanner.l"
+#line 1 "src/scanner/miniscanner.l"
 /* The first section of a flex file contains:
  *    1. A code section for includes and other arbitrary C code. Copied to the scanner verbatim
  *    2. Helper definitions for regexes
  *    3. Scanner options
  */
 /* Code section */
-#line 9 "miniscanner.l"
+#line 9 "src/scanner/miniscanner.l"
 #include <stdio.h>
 /* Scanner options, line number generation */
 /* The second section of a flex file contains the regular expressions, using helper definitions
@@ -582,7 +583,7 @@ char *yytext;
  *    - yytext: Matched text
  *    - yylineno: Convenience variable for the line number provided by %option yylineno
  */
-#line 586 "lex.yy.c"
+#line 587 "src/scanner/lex.yy.c"
 
 #define INITIAL 0
 
@@ -800,9 +801,9 @@ YY_DECL
 		}
 
 	{
-#line 27 "miniscanner.l"
+#line 27 "src/scanner/miniscanner.l"
 
-#line 806 "lex.yy.c"
+#line 807 "src/scanner/lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -872,211 +873,211 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 28 "miniscanner.l"
+#line 28 "src/scanner/miniscanner.l"
 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 29 "miniscanner.l"
+#line 29 "src/scanner/miniscanner.l"
 
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 30 "miniscanner.l"
+#line 30 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 31 "miniscanner.l"
+#line 31 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 32 "miniscanner.l"
+#line 32 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 33 "miniscanner.l"
+#line 33 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 34 "miniscanner.l"
+#line 34 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 35 "miniscanner.l"
+#line 35 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 36 "miniscanner.l"
+#line 36 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 37 "miniscanner.l"
+#line 37 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 38 "miniscanner.l"
+#line 38 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 39 "miniscanner.l"
+#line 39 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 40 "miniscanner.l"
+#line 40 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 41 "miniscanner.l"
+#line 41 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 42 "miniscanner.l"
+#line 42 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 43 "miniscanner.l"
+#line 43 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 44 "miniscanner.l"
+#line 44 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 45 "miniscanner.l"
+#line 45 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 46 "miniscanner.l"
+#line 46 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 47 "miniscanner.l"
+#line 47 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 48 "miniscanner.l"
+#line 48 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 49 "miniscanner.l"
+#line 49 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 52 "miniscanner.l"
+#line 52 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 53 "miniscanner.l"
+#line 53 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 54 "miniscanner.l"
+#line 54 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 55 "miniscanner.l"
+#line 55 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 56 "miniscanner.l"
+#line 56 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 57 "miniscanner.l"
+#line 57 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 58 "miniscanner.l"
+#line 58 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 59 "miniscanner.l"
+#line 59 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 60 "miniscanner.l"
+#line 60 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 61 "miniscanner.l"
+#line 61 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 62 "miniscanner.l"
+#line 62 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 63 "miniscanner.l"
+#line 63 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 65 "miniscanner.l"
+#line 65 "src/scanner/miniscanner.l"
 
 	YY_BREAK
 case 36:
 /* rule 36 can match eol */
 YY_RULE_SETUP
-#line 67 "miniscanner.l"
+#line 67 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 69 "miniscanner.l"
+#line 69 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 71 "miniscanner.l"
+#line 71 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 73 "miniscanner.l"
+#line 73 "src/scanner/miniscanner.l"
 {;}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 77 "miniscanner.l"
+#line 77 "src/scanner/miniscanner.l"
 { fprintf (stderr, "Error: (line %d) unexpected character '%s'\n", yylineno, yytext); exit(1); }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 78 "miniscanner.l"
+#line 78 "src/scanner/miniscanner.l"
 ECHO;
 	YY_BREAK
-#line 1080 "lex.yy.c"
+#line 1081 "src/scanner/lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2089,7 +2090,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 78 "miniscanner.l"
+#line 78 "src/scanner/miniscanner.l"
 
 
 
