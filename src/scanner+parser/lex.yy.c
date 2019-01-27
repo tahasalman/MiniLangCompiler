@@ -864,177 +864,177 @@ case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
 #line 27 "minic.l"
-
+;      
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 28 "minic.l"
+#line 29 "minic.l"
 return tCOLON;
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 29 "minic.l"
+#line 30 "minic.l"
 return tSEMICOLON;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 30 "minic.l"
+#line 31 "minic.l"
 return tPLUS;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "minic.l"
+#line 32 "minic.l"
 return tMINUS;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 32 "minic.l"
+#line 33 "minic.l"
 return tMULTIPLY;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 33 "minic.l"
+#line 34 "minic.l"
 return tDIVIDE;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 34 "minic.l"
+#line 35 "minic.l"
 return tLEFTPAREN;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 35 "minic.l"
+#line 36 "minic.l"
 return tRIGHTPAREN;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 36 "minic.l"
+#line 37 "minic.l"
 return tLEFTBRACE;
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 37 "minic.l"
+#line 38 "minic.l"
 return tRIGHTBRACE;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 38 "minic.l"
+#line 39 "minic.l"
 return tASSIGN;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 39 "minic.l"
+#line 40 "minic.l"
 return tNEGATE;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 40 "minic.l"
+#line 41 "minic.l"
 return tEQUALS;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 41 "minic.l"
+#line 42 "minic.l"
 return tNOTEQUALS;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 42 "minic.l"
+#line 43 "minic.l"
 return tGREATEREQUALS;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 43 "minic.l"
+#line 44 "minic.l"
 return tLESSEQUALS;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 44 "minic.l"
+#line 45 "minic.l"
 return tGREATER;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 45 "minic.l"
+#line 46 "minic.l"
 return tLESS;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 46 "minic.l"
+#line 47 "minic.l"
 return tAND;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 47 "minic.l"
+#line 48 "minic.l"
 return tOR;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 48 "minic.l"
+#line 49 "minic.l"
 return tVAR;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 49 "minic.l"
+#line 50 "minic.l"
 return tFLOAT;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 50 "minic.l"
+#line 51 "minic.l"
 return tINT;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 51 "minic.l"
+#line 52 "minic.l"
 return tSTRING;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 52 "minic.l"
+#line 53 "minic.l"
 return tBOOLEAN;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 53 "minic.l"
+#line 54 "minic.l"
 return tIF;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 54 "minic.l"
+#line 55 "minic.l"
 return tELSE;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 55 "minic.l"
+#line 56 "minic.l"
 return tWHILE;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 56 "minic.l"
+#line 57 "minic.l"
 return tREAD;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 57 "minic.l"
+#line 58 "minic.l"
 return tPRINT;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 58 "minic.l"
+#line 59 "minic.l"
 return tTRUE;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 59 "minic.l"
+#line 60 "minic.l"
 return tFALSE;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 61 "minic.l"
+#line 62 "minic.l"
 
 	YY_BREAK
 case 35:
 /* rule 35 can match eol */
 YY_RULE_SETUP
-#line 63 "minic.l"
+#line 64 "minic.l"
 {
 	yylval.stringval = strdup(yytext);
 	return tSTRINGVAL;
@@ -1042,7 +1042,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 68 "minic.l"
+#line 69 "minic.l"
 {
 	yylval.floatval = atof(yytext);
 	return tFLOATVAL;
@@ -1050,7 +1050,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 73 "minic.l"
+#line 74 "minic.l"
 {
 		yylval.intval = atoi(yytext);
 	    return tINTVAL;
@@ -1058,7 +1058,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 78 "minic.l"
+#line 79 "minic.l"
 {
 		yylval.identifier = strdup(yytext);
 	    return tIDENTIFIER;
@@ -1066,12 +1066,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 85 "minic.l"
+#line 86 "minic.l"
 { fprintf (stderr, "Error: (line %d) unexpected character '%s'\n", yylineno, yytext); exit(1); }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 86 "minic.l"
+#line 87 "minic.l"
 ECHO;
 	YY_BREAK
 #line 1078 "lex.yy.c"
@@ -2046,7 +2046,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 86 "minic.l"
+#line 87 "minic.l"
 
 
 

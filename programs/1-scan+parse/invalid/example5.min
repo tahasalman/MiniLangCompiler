@@ -1,0 +1,2 @@
+// Incorrect format of string - scanning error
+print('helo');

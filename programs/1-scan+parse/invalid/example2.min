@@ -1,1 +1,2 @@
+// no type specified for variable - parsing error
 var x = 5;

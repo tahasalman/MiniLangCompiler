@@ -82,7 +82,7 @@ void yyerror(const char *s) {
 
 %% 
 
-program: dcls | stmts ;
+program: dcls stmts ;
 dcls: %empty | dcl dcls ;
 stmts: %empty | stmt stmts ;
 dcl: tVAR tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON |
@@ -90,13 +90,18 @@ dcl: tVAR tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON |
 type: tINT | tFLOAT | tSTRING | tBOOLEAN ;
 stmt: tREAD tLEFTPAREN tIDENTIFIER tRIGHTPAREN tSEMICOLON |
 	tPRINT tLEFTPAREN exp tRIGHTPAREN tSEMICOLON |
-	tVAR tASSIGN exp tSEMICOLON |
-	tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE stmts tLEFTBRACE |
+	tIDENTIFIER tASSIGN exp tSEMICOLON |
+	tWHILE tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE |
 	ifstmt ;
-ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE stmts tRIGHTBRACE elifstmts elsestmt ;
-elsestmt: %empty | tELSE tLEFTBRACE stmts tRIGHTBRACE ;
-elifstmts: %empty | elifstmt elifstmts ;
-elifstmt: tELSE tIF tLEFTPAREN exp tRIGHTPAREN tRIGHTBRACE stmts tLEFTBRACE ; 
+ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE |
+	tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE tELSE tLEFTBRACE program tRIGHTBRACE |
+	tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE tELSE ifstmt ;
+
+/*ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE elifstmts elsestmt ;
+elsestmt: %empty | tELSE tLEFTBRACE program tRIGHTBRACE ;
+* elifstmts: %empty | elifstmt elifstmts ;
+* elifstmt: tELSE tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE ; 
+*/
 exp: tIDENTIFIER |
 	tINTVAL | tFLOATVAL | tSTRINGVAL | tTRUE | tFALSE |
 	tMINUS exp %prec tUMINUS | tNEGATE exp %prec tUNEGATE |

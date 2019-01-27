@@ -24,7 +24,8 @@
 %option nounput
 
 %%
-[ \t\r\n]+          
+[ \r\n\t]+      ;      
+ 
 ":"		return tCOLON;
 ";"	    	return tSEMICOLON;
 "+"         	return tPLUS;
