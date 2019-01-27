@@ -1,8 +1,26 @@
 #!/bin/bash
 
-# Build the compiler
-#
-# You MUST replace the following commands with the commands for building your compiler
+flex --outfile=src/tokens/lex.yy.c src/tokens/minitokens
+gcc -o src/tokens/minitokens /src/tokens/lex.yy.c -lfl
 
-make clean -C ./src
-make -C ./src
+flex --outfile=src/scanner/lex.yy.c sr/scanner/miniscanner
+gcc -o src/scanner/miniscanner /src/scanner/lex.yy.c -lfl
+
+make -C src/scanner+parser
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
