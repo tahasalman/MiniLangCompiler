@@ -82,7 +82,7 @@ void yyerror(const char *s) {
 
 %% 
 
-program: dcls stmts ;
+program:  %empty | dcls program | stmts program;
 dcls: %empty | dcl dcls ;
 stmts: %empty | stmt stmts ;
 dcl: tVAR tIDENTIFIER tCOLON type tASSIGN exp tSEMICOLON |
@@ -96,12 +96,6 @@ stmt: tREAD tLEFTPAREN tIDENTIFIER tRIGHTPAREN tSEMICOLON |
 ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE |
 	tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE tELSE tLEFTBRACE program tRIGHTBRACE |
 	tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE tELSE ifstmt ;
-
-/*ifstmt: tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE elifstmts elsestmt ;
-elsestmt: %empty | tELSE tLEFTBRACE program tRIGHTBRACE ;
-* elifstmts: %empty | elifstmt elifstmts ;
-* elifstmt: tELSE tIF tLEFTPAREN exp tRIGHTPAREN tLEFTBRACE program tRIGHTBRACE ; 
-*/
 exp: tIDENTIFIER |
 	tINTVAL | tFLOATVAL | tSTRINGVAL | tTRUE | tFALSE |
 	tMINUS exp %prec tUMINUS | tNEGATE exp %prec tUNEGATE |

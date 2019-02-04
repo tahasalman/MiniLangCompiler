@@ -61,7 +61,8 @@
 
 [/][/].*
 
-\"[^"\\]*(?s:\\.[^"\\]*)*\" {
+
+\"([a-zA-Z0-9]|[~@#$%^&*\-+/`<>=_|'.,;:!?\{\}\[\]()]|(\\[abfnrtv\"\\])|[ \t\r\n])*\" {
 	yylval.stringval = strdup(yytext);
 	return tSTRINGVAL;
 }
