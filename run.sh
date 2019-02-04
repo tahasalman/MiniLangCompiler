@@ -31,13 +31,13 @@ fi
 
 if [ "$1" = "tokens" ]
 then
-	./src/tokens/minitokens "$1" < "$2"
+	./src/minic "$1" < "$2"
 elif [ "$1" = "scan" ]
 then 
-	./src/scanner/miniscanner "$1" < "$2"
+	./src/minic "$1" < "$2"
 elif [ "$1" = "parse" ]
 then
-	./src/scanner+parser/minic "$1" < "$2"
+	./src/minic "$1" < "$2"
 else
 	echo "Incorrect mode argument!"
 	exit 1
