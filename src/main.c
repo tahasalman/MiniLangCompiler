@@ -1,6 +1,10 @@
 #include "stdio.h"
 #include "string.h"
+#include "tree.h"
+
 int g_tokens = 0;
+STMT *root;
+
 void yyparse();
 int yylex();
 int main(int argc, char **argv)

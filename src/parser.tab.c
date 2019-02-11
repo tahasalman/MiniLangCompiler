@@ -39,6 +39,12 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
+/* "%code requires" blocks.  */
+#line 16 "minic.y" /* yacc.c:1909  */
+
+	#include "tree.h"
+
+#line 48 "parser.tab.c" /* yacc.c:1909  */
 
 /* Token type.  */
 #ifndef YYTOKENTYPE
@@ -130,14 +136,19 @@ extern int yydebug;
 
 union YYSTYPE
 {
-#line 30 "minic.y" /* yacc.c:1909  */
+#line 20 "minic.y" /* yacc.c:1909  */
 
 	int intval;
 	float floatval;
 	char *stringval;
+	int boolval;
 	char *identifier;
+	char *type;
+	EXP *exp;
+	STMT *stmt;
+	PROGRAM *program;
 
-#line 141 "parser.tab.c" /* yacc.c:1909  */
+#line 152 "parser.tab.c" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
