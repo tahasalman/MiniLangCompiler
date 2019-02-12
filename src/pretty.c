@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include "pretty.h"
 
-void prettyEXP(EXP *e)
-{
+void prettyEXP(EXP *e){
 	switch (e->type) {
 		case eIdentifier:
 			printf("%s", e->val.identifier);

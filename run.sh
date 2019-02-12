@@ -14,7 +14,7 @@ then
 	exit 1
 fi
 
-if [[ "|scan|tokens|parse|" != *"|$1|"* ]]
+if [[ "|scan|tokens|parse|pretty|symbol|" != *"|$1|"* ]]
 then
 	echo "Unknown mode \"$1\""
 	echo "Usage: $0 <mode> <file>"
@@ -24,21 +24,4 @@ then
 
 fi
 
-# Invoke the compiler with the provided arguments: mode ($1) and file ($2)
-#
-# You MUST replace the following command with the command for invoking your compiler
-#!/bin/bash
-
-if [ "$1" = "tokens" ]
-then
-	./src/minic "$1" < "$2"
-elif [ "$1" = "scan" ]
-then 
-	./src/minic "$1" < "$2"
-elif [ "$1" = "parse" ]
-then
-	./src/minic "$1" < "$2"
-else
-	echo "Incorrect mode argument!"
-	exit 1
-fi
+./src/minic "$1" < "$2"

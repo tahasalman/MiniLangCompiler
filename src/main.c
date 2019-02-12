@@ -2,8 +2,10 @@
 #include "string.h"
 #include "tree.h"
 #include "pretty.h"
+#include "symbol.h"
 
 int g_tokens = 0;
+int print_symbol = 0;
 STMT *root;
 
 void yyparse();
@@ -30,6 +32,14 @@ int main(int argc, char **argv)
 	else if (strcmp(argv[1],"pretty") == 0){
 		yyparse();
 		prettySTMT(root);
+	}
+	else if (strcmp(argv[1],"symbol") == 0){
+		yyparse();
+		print_symbol=1;
+		SymbolTable *t =initSymbolTable();
+		buildSymSTMT(t,root);
+
+		
 	}
 	else{
 		fprintf(stderr, "Invalid compiler mode entered!");
