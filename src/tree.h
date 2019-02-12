@@ -31,6 +31,8 @@ typedef enum{
 	sAssign,
 	sWhile,
 	sIfStmt,
+	sIfElseStmt,
+	sIfElifStmt,
 	sDeclare,
 	sInit
 }StatementType;

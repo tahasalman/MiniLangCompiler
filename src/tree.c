@@ -118,6 +118,7 @@ STMT *makeStmtLoop(EXP *condition, STMT *body, STMT *next){
 
 STMT *makeStmtIf(EXP *condition, STMT *body, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
+	s->type = sIfStmt;
 	s->val.ifstmt.condition = condition;
 	s->val.ifstmt.body = body;
 	s->next = next;
@@ -126,6 +127,7 @@ STMT *makeStmtIf(EXP *condition, STMT *body, STMT *next){
 
 STMT *makeStmtIfElse(EXP *condition, STMT *body, STMT *elsebody, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
+	s->type = sIfElseStmt;
 	s->val.ifelsestmt.condition = condition;
 	s->val.ifelsestmt.body = body;
 	s->val.ifelsestmt.elsebody = elsebody;
@@ -135,6 +137,7 @@ STMT *makeStmtIfElse(EXP *condition, STMT *body, STMT *elsebody, STMT *next){
 
 STMT *makeStmtIfElif(EXP *condition, STMT *body, STMT *elifbody, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
+	s->type = sIfElifStmt;
 	s->val.ifelifstmt.condition = condition;
 	s->val.ifelifstmt.body = body;
 	s->val.ifelifstmt.elifbody = elifbody;
