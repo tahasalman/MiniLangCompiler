@@ -14,7 +14,7 @@ then
 	exit 1
 fi
 
-if [[ "|scan|tokens|parse|pretty|symbol|" != *"|$1|"* ]]
+if [[ "|scan|tokens|parse|pretty|symbol|typecheck|" != *"|$1|"* ]]
 then
 	echo "Unknown mode \"$1\""
 	echo "Usage: $0 <mode> <file>"

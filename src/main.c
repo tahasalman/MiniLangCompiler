@@ -2,7 +2,7 @@
 #include "string.h"
 #include "tree.h"
 #include "pretty.h"
-#include "symbol.h"
+#include "symbol_type.h"
 
 int g_tokens = 0;
 int print_symbol = 0;
@@ -38,8 +38,12 @@ int main(int argc, char **argv)
 		print_symbol=1;
 		SymbolTable *t =initSymbolTable();
 		buildSymSTMT(t,root);
-
-		
+	}
+	else if (strcmp(argv[1],"typecheck") == 0){
+		yyparse();
+		SymbolTable *t = initSymbolTable();
+		checkSTMTType(t,root);
+		printf("OK\n");
 	}
 	else{
 		fprintf(stderr, "Invalid compiler mode entered!");

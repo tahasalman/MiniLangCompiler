@@ -1,7 +1,6 @@
 #ifndef TREE_H
 #define TREE_H
 
-
 typedef enum{
 	eIdentifier,
 	eInt,
@@ -41,6 +40,7 @@ typedef enum{
 typedef struct EXP EXP;
 struct EXP{
 	ExpressionType type;
+	int lineno;
 	union {
 		char *identifier;
 		int intLiteral;
@@ -56,6 +56,7 @@ struct EXP{
 typedef struct STMT STMT;
 struct STMT{
 	StatementType type;
+	int lineno;
 	union {
 		struct {char *identifier;} read;
 		struct {EXP *exp;} print;

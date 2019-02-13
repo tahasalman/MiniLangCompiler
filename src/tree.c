@@ -1,16 +1,19 @@
 #include <stdlib.h>
 #include "tree.h"
 
+extern int yylineno;
 
 EXP *makeExpIdentifier(char *identifier){
 	EXP *e = malloc(sizeof(EXP));
 	e->type = eIdentifier;
+	e->lineno=yylineno;
 	e->val.identifier = identifier;
 	return e;
 }
 
 EXP *makeExpInt(int intLiteral){
 	EXP *e = malloc(sizeof(EXP));
+	e->lineno=yylineno;
 	e->type = eInt;
 	e->val.intLiteral = intLiteral;
 	return e;
@@ -19,6 +22,7 @@ EXP *makeExpInt(int intLiteral){
 EXP *makeExpFloat(float floatLiteral){
 	EXP *e = malloc(sizeof(EXP));
 	e->type = eFloat;
+	e->lineno=yylineno;
 	e->val.floatLiteral = floatLiteral;
 	return e;
 }
@@ -26,6 +30,7 @@ EXP *makeExpFloat(float floatLiteral){
 EXP *makeExpBool(int boolLiteral){
 	EXP *e = malloc(sizeof(EXP));
 	e->type = eBool;
+	e->lineno=yylineno;
 	e->val.boolLiteral = boolLiteral;
 	return e;
 }
@@ -40,12 +45,14 @@ EXP *makeExpString(char *stringLiteral){
 EXP *makeExpIdentity(EXP *exp){
 	EXP *e = malloc(sizeof(EXP));
 	e->type = eIdentity;
+	e->lineno=yylineno;
 	e->val.exp = exp;
 	return e;
 }
 
 EXP *makeExpUnary(ExpressionType op, EXP *exp){
 	EXP *e = malloc(sizeof(EXP));
+	e->lineno=yylineno;
 	e->type = op;
 	e->val.unary.exp = exp;
 	return e;
@@ -54,6 +61,7 @@ EXP *makeExpUnary(ExpressionType op, EXP *exp){
 EXP *makeExpBinary(ExpressionType op, EXP *lhs, EXP *rhs){
 	EXP *e = malloc(sizeof(EXP));
 	e->type = op;
+	e->lineno=yylineno;
 	e->val.binary.lhs = lhs;
 	e->val.binary.rhs = rhs;
 	return e;
@@ -62,6 +70,7 @@ EXP *makeExpBinary(ExpressionType op, EXP *lhs, EXP *rhs){
 STMT *makeStmtRead(char *identifier, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sRead;
+	s->lineno=yylineno;
 	s->val.read.identifier = identifier;
 	s->next = next;
 	return s;
@@ -71,6 +80,7 @@ STMT *makeStmtRead(char *identifier, STMT *next){
 STMT *makeStmtPrint(EXP *exp, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sPrint;
+	s->lineno=yylineno;
 	s->val.print.exp = exp;
 	s->next = next;
 	return s;
@@ -79,6 +89,7 @@ STMT *makeStmtPrint(EXP *exp, STMT *next){
 STMT *makeStmtAssign(char *identifier, EXP *val, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sAssign;
+	s->lineno=yylineno;
 	s->val.assign.identifier = identifier;
 	s->val.assign.val = val;
 	s->next = next;
@@ -89,6 +100,7 @@ STMT *makeStmtAssign(char *identifier, EXP *val, STMT *next){
 STMT *makeStmtDecl(char *identifier, char *type, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sDeclare;
+	s->lineno=yylineno;
 	s->val.declaration.identifier = identifier;
 	s->val.declaration.type = type;
 	s->next = next;
@@ -99,6 +111,7 @@ STMT *makeStmtDecl(char *identifier, char *type, STMT *next){
 STMT *makeStmtInit(char *identifier, char *type, EXP *exp, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sInit;
+	s->lineno=yylineno;
 	s->val.initialization.identifier = identifier;
 	s->val.initialization.type = type;
 	s->val.initialization.exp = exp;
@@ -110,6 +123,7 @@ STMT *makeStmtInit(char *identifier, char *type, EXP *exp, STMT *next){
 STMT *makeStmtLoop(EXP *condition, STMT *body, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sWhile;
+	s->lineno=yylineno;
 	s->val.loop.condition = condition;
 	s->val.loop.body = body;
 	s->next = next;
@@ -119,6 +133,7 @@ STMT *makeStmtLoop(EXP *condition, STMT *body, STMT *next){
 STMT *makeStmtIf(EXP *condition, STMT *body, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sIfStmt;
+	s->lineno=yylineno;
 	s->val.ifstmt.condition = condition;
 	s->val.ifstmt.body = body;
 	s->next = next;
@@ -128,6 +143,7 @@ STMT *makeStmtIf(EXP *condition, STMT *body, STMT *next){
 STMT *makeStmtIfElse(EXP *condition, STMT *body, STMT *elsebody, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sIfElseStmt;
+	s->lineno=yylineno;
 	s->val.ifelsestmt.condition = condition;
 	s->val.ifelsestmt.body = body;
 	s->val.ifelsestmt.elsebody = elsebody;
@@ -138,6 +154,7 @@ STMT *makeStmtIfElse(EXP *condition, STMT *body, STMT *elsebody, STMT *next){
 STMT *makeStmtIfElif(EXP *condition, STMT *body, STMT *elifbody, STMT *next){
 	STMT *s = malloc(sizeof(STMT));
 	s->type = sIfElifStmt;
+	s->lineno=yylineno;
 	s->val.ifelifstmt.condition = condition;
 	s->val.ifelifstmt.body = body;
 	s->val.ifelifstmt.elifbody = elifbody;
