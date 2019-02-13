@@ -1,0 +1,19 @@
+// Find e with accuracy specified
+var accuracyFactor: int = 0;
+var result: float = 1.0;
+
+read(accuracyFactor);
+
+while(accuracyFactor){
+    var tempTerm: float = 1;
+    var count: int = accuracyFactor;
+    
+    while(count){
+        tempTerm = tempTerm * count;
+        count = count - 1;
+    }
+    result = result + (1/tempTerm);
+    accuracyFactor = accuracyFactor - 1;
+}
+
+print(result);

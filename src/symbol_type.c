@@ -4,6 +4,7 @@
 #include "symbol_type.h"
 
 extern int print_symbol;
+extern FILE *outFile;
 
 int Hash(char *str)
 { unsigned int hash = 0;
@@ -73,7 +74,7 @@ void buildSymEXP(SymbolTable *t, EXP *e){
 	switch (e->type) {
 		case eIdentifier:
 			if (getSymbol(t,e->val.identifier) == NULL){
-				fprintf(stderr,"Error (Line %i)! %s is not defined",e->lineno,e->val.identifier);
+				fprintf(stderr,"Error (Line %d)! %s is not defined",e->lineno,e->val.identifier);
 					exit(1);
 			}
 			break;
@@ -151,7 +152,7 @@ void buildSymSTMT(SymbolTable *t, STMT *s){
 		switch (s->type){
 			case sRead:
 				if(getSymbol(t,s->val.read.identifier) == NULL){
-					fprintf(stderr,"Error (Line %i)! %s is not defined",s->lineno,s->val.read.identifier);
+					fprintf(stderr,"Error (Line %d)! %s is not defined",s->lineno,s->val.read.identifier);
 					exit(1);
 				}
 				break;
@@ -160,7 +161,7 @@ void buildSymSTMT(SymbolTable *t, STMT *s){
 				break;
 			case sAssign:
 				if(getSymbol(t,s->val.assign.identifier) == NULL){
-					fprintf(stderr,"Error (Line %i)! %s is not defined",s->lineno, s->val.assign.identifier);
+					fprintf(stderr,"Error (Line %d)! %s is not defined",s->lineno, s->val.assign.identifier);
 					exit(1);
 				}
 				buildSymEXP(t,s->val.assign.val);
@@ -205,7 +206,7 @@ void buildSymSTMT(SymbolTable *t, STMT *s){
 				if (getSymbolScope(t,s->val.declaration.identifier) == NULL)
 					putSymbol(t, s->val.declaration.identifier, s->val.declaration.type);
 				else{
-					fprintf(stderr,"Error (Line %i)! %s already exists in this scope!",s->lineno,s->val.declaration.identifier);
+					fprintf(stderr,"Error (Line %d)! %s already exists in this scope!",s->lineno,s->val.declaration.identifier);
 					exit(1);
 				}
 				if (print_symbol){
@@ -218,7 +219,7 @@ void buildSymSTMT(SymbolTable *t, STMT *s){
 					buildSymEXP(t,s->val.initialization.exp);
 				}
 				else{
-					fprintf(stderr,"Error (Line %i)! %s already exists in this scope!",s->lineno,s->val.initialization.identifier);
+					fprintf(stderr,"Error (Line %d)! %s already exists in this scope!",s->lineno,s->val.initialization.identifier);
 					exit(1);
 				}
 				if (print_symbol){
@@ -240,7 +241,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 		case eIdentifier:
 			type = getType(t,e->val.identifier);
 			if (type == NULL){
-				fprintf(stderr,"Error (Line %i)! %s is not defined",e->lineno,e->val.identifier);
+				fprintf(stderr,"Error (Line %d)! %s is not defined",e->lineno,e->val.identifier);
 				exit(1);
 			}
 			break;
@@ -261,9 +262,9 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			break;
 		case eUnaryMinus:
 			type = getEXPType(t,e->val.unary.exp);
-			if (strcmp(type,"float") != 0 || strcmp(type,"int") != 0){
+			if (strcmp(type,"float") != 0 && strcmp(type,"int") != 0){
 				fprintf(stderr,
-				"Error (Line %i)! This expression is of type %s. Unary Minus can only be of type int or float",
+				"Error (Line %d)! This expression is of type %s. Unary Minus can only be of type int or float",
 				e->lineno,type);
 				exit(1);
 			}
@@ -272,7 +273,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type = getEXPType(t,e->val.unary.exp);
 			if (strcmp(type,"boolean") != 0){
 				fprintf(stderr,
-				"Error (Line %i)! This expression is of type %s. Negation can only be of type boolean",
+				"Error (Line %d)! This expression is of type %s. Negation can only be of type boolean",
 				e->lineno,type);
 				exit(1);
 			}
@@ -286,7 +287,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 				((strcmp(type1,"float") == 0) && (strcmp(type2,"int") == 0))
 				)){
 					fprintf(stderr,
-					"Error (Line %i) ! This expression is attempting an illegal addition between %s and %s",e->lineno,type1,type2);
+					"Error (Line %d) ! This expression is attempting an illegal addition between %s and %s",e->lineno,type1,type2);
 					exit(1);
 				}
 			if (strcmp(type1,type2) != 0)
@@ -303,7 +304,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 				((strcmp(type1,"float") == 0) && (strcmp(type2,"int") == 0))
 				)){
 					fprintf(stderr,
-					"Error (Line %i)! This expression is attempting an illegal subtraction between %s and %s",
+					"Error (Line %d)! This expression is attempting an illegal subtraction between %s and %s",
 					e->lineno,type1,type2
 					);
 					exit(1);
@@ -322,7 +323,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 				((strcmp(type1,"float") == 0) && (strcmp(type2,"int") == 0))
 				)){
 					fprintf(stderr,
-					"Error (Line %i)! This expression is attempting an illegal addition between %s and %s",
+					"Error (Line %d)! This expression is attempting an illegal addition between %s and %s",
 					e->lineno,type1,type2
 					);
 					exit(1);
@@ -341,7 +342,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 				((strcmp(type1,"float") == 0) && (strcmp(type2,"int") == 0))
 				)){
 					fprintf(stderr,
-					"Error (Line %i)! This expression is attempting an illegal addition between %s and %s",
+					"Error (Line %d)! This expression is attempting an illegal addition between %s and %s",
 					e->lineno,type1,type2
 					);
 					exit(1);
@@ -356,7 +357,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0)){
 				fprintf(stderr,
-				"Error (Line %i)! The expressions must be of the same type on both sides of '==' but got %s and %s",
+				"Error (Line %d)! The expressions must be of the same type on both sides of '==' but got %s and %s",
 				e->lineno,type1, type2
 				);
 				exit(1);
@@ -368,7 +369,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0)){
 				fprintf(stderr,
-				"Error (Line %i)! The expressions must be of the same type on both sides of '!=' but got %s and %s!",
+				"Error (Line %d)! The expressions must be of the same type on both sides of '!=' but got %s and %s!",
 				e->lineno,type1,type2
 				);
 				exit(1);
@@ -380,7 +381,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0)){
 				fprintf(stderr,
-				"Error (Line %i)! The expressions must be of the same type on both sides of '>' but got %s and %s!",
+				"Error (Line %d)! The expressions must be of the same type on both sides of '>' but got %s and %s!",
 				e->lineno,type1,type2
 				);
 				exit(1);
@@ -392,7 +393,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0)){
 				fprintf(stderr,
-				"Error (Line %i)! The expressions must be of the same type on both sides of '<' but got %s and %s!",
+				"Error (Line %d)! The expressions must be of the same type on both sides of '<' but got %s and %s!",
 				e->lineno, type1,type2
 				);
 				exit(1);
@@ -404,7 +405,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0)){
 				fprintf(stderr,
-				"Error (Line %i)! The expressions must be of the same type on both sides of '>=' but got %s and %s!",
+				"Error (Line %d)! The expressions must be of the same type on both sides of '>=' but got %s and %s!",
 				e->lineno,type1,type2
 				);
 				exit(1);
@@ -416,7 +417,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0)){
 				fprintf(stderr,
-				"Error (Line %i)! The expressions must be of the same type on both sides of '<=' but got %s and %s!",
+				"Error (Line %d)! The expressions must be of the same type on both sides of '<=' but got %s and %s!",
 				e->lineno,type1,type2
 				);
 				exit(1);
@@ -427,7 +428,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type1 = getEXPType(t,e->val.binary.lhs);
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0) || (strcmp(type1,"boolean") !=0)) {
-				fprintf(stderr,"Error (Line %i)! The expressions on either side of '&&' must both be of type boolean!", e->lineno);
+				fprintf(stderr,"Error (Line %d)! The expressions on either side of '&&' must both be of type boolean!", e->lineno);
 				exit(1);
 				}
 			type = "boolean";
@@ -437,7 +438,7 @@ char *getEXPType(SymbolTable *t, EXP *e){
 			type2 = getEXPType(t,e->val.binary.rhs);
 			if ((strcmp(type1,type2) !=0) || (strcmp(type1,"boolean") !=0)) {
 				fprintf(stderr,
-				"Error (Line %i)! The expressions on either side of '||' must both be of type boolean!", e->lineno
+				"Error (Line %d)! The expressions on either side of '||' must both be of type boolean!", e->lineno
 				);
 				exit(1);
 				}
@@ -456,7 +457,7 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 			case sRead:
 				type = getType(t,s->val.read.identifier);
 				if (type == NULL){
-					fprintf(stderr,"Error (Line %i)! %s is not defined",s->lineno,s->val.read.identifier);
+					fprintf(stderr,"Error (Line %d)! %s is not defined",s->lineno,s->val.read.identifier);
 					exit(1);
 				}					
 				break;
@@ -466,19 +467,19 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 			case sAssign:
 				type = getType(t,s->val.assign.identifier);
 				if(type == NULL){
-					fprintf(stderr,"Error (Line %i)! %s is not defined", s->lineno,s->val.assign.identifier);
+					fprintf(stderr,"Error (Line %d)! %s is not defined", s->lineno,s->val.assign.identifier);
 					exit(1);
 				}
 				type2 = getEXPType(t,s->val.assign.val);
 				if(strcmp(type, type2) != 0){
-					fprintf(stderr,"Error (Line %i)! '%s' type expected for '%s' but got %s",s->lineno, type, s->val.assign.identifier,type2);
+					fprintf(stderr,"Error (Line %d)! '%s' type expected for '%s' but got %s",s->lineno, type, s->val.assign.identifier,type2);
 					exit(1);
 				}
 				break;
 			case sWhile:
 				type2 = getEXPType(t, s->val.loop.condition);
 				if (strcmp(type2, "boolean") != 0){
-					fprintf(stderr,"Error (Line %i)! 'boolean' type expected for while condition but got %s", s->lineno, type2);
+					fprintf(stderr,"Error (Line %d)! 'boolean' type expected for while condition but got %s", s->lineno, type2);
 					exit(1);
 				}
 				SymbolTable *whileTable = scopeSymbolTable(t);
@@ -487,7 +488,7 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 			case sIfStmt:
 				type2 = getEXPType(t, s->val.ifstmt.condition);
 				if (strcmp(type2, "boolean") != 0){
-					fprintf(stderr,"Error (Line %i)! 'boolean' type expected for if condition but got %s", s->lineno,type2);
+					fprintf(stderr,"Error (Line %d)! 'boolean' type expected for if condition but got %s", s->lineno,type2);
 					exit(1);
 				}
 				SymbolTable *ifTable = scopeSymbolTable(t);
@@ -496,7 +497,7 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 			case sIfElseStmt:
 				type2 = getEXPType(t, s->val.ifelsestmt.condition);
 				if (strcmp(type2, "boolean") != 0){
-					fprintf(stderr,"Error (Line %i)! 'boolean' type expected for if condition but got %s", s->lineno,type2);
+					fprintf(stderr,"Error (Line %d)! 'boolean' type expected for if condition but got %s", s->lineno,type2);
 					exit(1);
 				}
 				SymbolTable *ifElseTable1 = scopeSymbolTable(t);
@@ -507,7 +508,7 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 			case sIfElifStmt:
 				type2 = getEXPType(t, s->val.ifelifstmt.condition);
 				if (strcmp(type2, "boolean") != 0){
-					fprintf(stderr,"Error (Line %i)! 'boolean' type expected for if condition but got %s", s->lineno,type2);
+					fprintf(stderr,"Error (Line %d)! 'boolean' type expected for if condition but got %s", s->lineno,type2);
 					exit(1);
 				}
 				SymbolTable *ifElifTable1 = scopeSymbolTable(t);
@@ -519,7 +520,7 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 				if (getSymbolScope(t,s->val.declaration.identifier) == NULL)
 					putSymbol(t, s->val.declaration.identifier, s->val.declaration.type);
 				else{
-					fprintf(stderr,"Error (Line %i)! %s already exists in this scope!",s->lineno,s->val.declaration.identifier);
+					fprintf(stderr,"Error (Line %d)! %s already exists in this scope!",s->lineno,s->val.declaration.identifier);
 					exit(1);
 				}
 				break;
@@ -527,13 +528,13 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 				if (getSymbolScope(t,s->val.initialization.identifier) == NULL){
 					putSymbol(t, s->val.initialization.identifier, s->val.initialization.type);
 					type = getEXPType(t,s->val.initialization.exp);
-					if (strcmp(type,s->val.declaration.type) != 0){
-						fprintf(stderr,"Error (Line %i)! '%s' type expected for '%s' but got %s",s->lineno,s->val.initialization.type, s->val.initialization.identifier,type);
+					if (strcmp(type,s->val.initialization.type) != 0){
+						fprintf(stderr,"Error (Line %d)! '%s' type expected for '%s' but got %s",s->lineno,s->val.initialization.type, s->val.initialization.identifier,type);
 						exit(1);
 					}
 				}
 				else{
-					fprintf(stderr,"Error (Line %i)! %s already exists in this scope!",s->lineno,s->val.initialization.identifier);
+					fprintf(stderr,"Error (Line %d)! %s already exists in this scope!",s->lineno,s->val.initialization.identifier);
 					exit(1);
 				}
 				break;
@@ -542,7 +543,215 @@ void checkSTMTType(SymbolTable *t, STMT *s){
 			checkSTMTType(t,s->next);
 	}
 }
-
-
+	
+void evalEXP(SymbolTable *t, EXP *e){
+	switch (e->type) {
+		case eIdentifier:
+			fprintf(outFile, "%s",e->val.identifier);
+			break;
+		case eInt:
+			fprintf(outFile,"%d",e->val.intLiteral);
+			break;
+		case eFloat:
+			fprintf(outFile,"%f",e->val.floatLiteral);
+			break;
+		case eBool:
+			fprintf(outFile,"%d",e->val.boolLiteral);
+			break;
+		case eString:
+			fprintf(outFile,"%s",e->val.stringLiteral);
+			break;
+		case eIdentity:
+			fprintf(outFile,"(");
+			evalEXP(t,e->val.exp);
+			fprintf(outFile,")");
+			break;
+		case eUnaryMinus:
+			fprintf(outFile,"-(");
+			evalEXP(t,e->val.unary.exp);
+			fprintf(outFile,")");
+			break;
+		case eNegate:
+			fprintf(outFile,"!(");
+			evalEXP(t,e->val.unary.exp);
+			fprintf(outFile,")");
+			break;
+		case eAddition:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," + ");
+			evalEXP(t,e->val.binary.rhs);
+			break;
+		case eSubtraction:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," - ");
+			evalEXP(t,e->val.binary.rhs);
+			break;
+		case eMultiplication:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," * ");
+			evalEXP(t,e->val.binary.rhs);
+		break;
+		case eDivision:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," / ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eEqual:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," == ");
+			evalEXP(t,e->val.binary.rhs);
+			break;
+		case eNotEqual:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," != ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eGreater:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," > ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eLess:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," < ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eGreaterEqual:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," >= ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eLessEqual:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," <= ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eLAnd:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," && ");
+			evalEXP(t,e->val.binary.rhs);
+			break;	
+		case eLOr:
+			evalEXP(t,e->val.binary.lhs);
+			fprintf(outFile," || ");
+			evalEXP(t,e->val.binary.rhs);
+			break;
+	}
+}
 
  
+void evalSTMT(SymbolTable *t, STMT *s){
+	if (s != NULL){
+		char *type;
+		char *inputArg;
+		switch (s->type){
+			case sRead:
+				type = getType(t,s->val.read.identifier);
+				;
+				if (strcmp(type,"int") == 0 || strcmp(type,"boolean") == 0)
+					inputArg = "%d";
+				else if (strcmp(type,"float") == 0 )
+					inputArg = "%f";
+				else
+					inputArg = "%s";
+				fprintf(outFile,"scanf(%s,%s);\n",inputArg, s->val.read.identifier);
+				break;
+			case sPrint:
+				fprintf(outFile,"printf(");
+				evalEXP(t,s->val.print.exp);
+				fprintf(outFile,");\n");				
+				break;
+			case sAssign:
+				fprintf(outFile,"%s = ",s->val.assign.identifier);
+				evalEXP(t,s->val.assign.val);
+				fprintf(outFile,";\n");
+				break;
+			case sWhile:
+				fprintf(outFile,"while (");
+				evalEXP(t,s->val.loop.condition);
+				fprintf(outFile,"){\n");
+				SymbolTable *whileTable = scopeSymbolTable(t);
+				evalSTMT(whileTable,s->val.loop.body);
+				fprintf(outFile,"}\n");
+				break;
+			case sIfStmt:
+				fprintf(outFile, "if (");
+				evalEXP(t,s->val.ifstmt.condition);
+				fprintf(outFile, "){\n");
+				SymbolTable *ifTable = scopeSymbolTable(t);
+				evalSTMT(ifTable, s->val.ifstmt.body);
+				fprintf(outFile,"\n");
+				break;
+			case sIfElseStmt:
+				fprintf(outFile, "if (");
+				evalEXP(t,s->val.ifelsestmt.condition);
+				fprintf(outFile,"){\n");
+				SymbolTable *ifElseTable1 = scopeSymbolTable(t);
+				evalSTMT(ifElseTable1, s->val.ifelsestmt.body);
+				fprintf(outFile,"}\nelse{\n");
+				SymbolTable *ifElseTable2 = scopeSymbolTable(t);
+				evalSTMT(ifElseTable2, s->val.ifelsestmt.elsebody);
+				break;
+			case sIfElifStmt:
+				fprintf(outFile, "if (");
+				evalEXP(t,s->val.ifelifstmt.condition);
+				fprintf(outFile, "){\n");
+				SymbolTable *ifElifTable1 = scopeSymbolTable(t);
+				evalSTMT(ifElifTable1, s->val.ifelifstmt.body);
+				fprintf(outFile,"}\nelse ");
+				SymbolTable *ifElifTable2 = scopeSymbolTable(t);
+				evalSTMT(ifElifTable2, s->val.ifelifstmt.elifbody);
+				break;
+			case sDeclare:		
+				if (getSymbolScope(t,s->val.declaration.identifier) == NULL)
+					putSymbol(t, s->val.declaration.identifier, s->val.declaration.type);
+				else{
+					fprintf(stderr,"Error (Line %d)! %s already exists in this scope!",s->lineno,s->val.declaration.identifier);
+					exit(1);
+				}
+				type = s->val.declaration.type;
+				if (strcmp("int",type) == 0)
+					inputArg = "int";
+				else if (strcmp("float",type) == 0)
+					inputArg = "float";
+				else if (strcmp("string",type) == 0)
+					inputArg = "char *";
+				else 
+					inputArg = "int";
+				fprintf(outFile,"%s %s;\n",inputArg,s->val.declaration.identifier);
+				break;
+			case sInit:
+				if (getSymbolScope(t,s->val.initialization.identifier) == NULL){
+					putSymbol(t, s->val.initialization.identifier, s->val.initialization.type);
+					type = getEXPType(t,s->val.initialization.exp);
+					if (strcmp(type,s->val.initialization.type) != 0){
+						fprintf(stderr,"Error (Line %d)! '%s' type expected for '%s' but got %s",s->lineno,s->val.initialization.type, s->val.initialization.identifier,type);
+						exit(1);
+					}
+					
+					type = s->val.initialization.type;
+					if (strcmp("int",type) == 0)
+						inputArg = "int";
+					else if (strcmp("float",type) == 0)
+						inputArg = "float";
+					else if (strcmp("string",type) == 0)
+						inputArg = "char *";
+					else 
+						inputArg = "int";
+					fprintf(outFile,"%s %s = ",inputArg,s->val.initialization.identifier);
+					evalEXP(t,s->val.initialization.exp);
+					fprintf(outFile,";\n");
+				
+				
+				}
+				else{
+					fprintf(stderr,"Error (Line %d)! %s already exists in this scope!",s->lineno,s->val.initialization.identifier);
+					exit(1);
+				}
+				break;
+		}
+		if (s->next != NULL)
+			evalSTMT(t,s->next);
+	}
+	
+}

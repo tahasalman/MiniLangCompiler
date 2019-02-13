@@ -33,3 +33,6 @@ void buildSymSTMT(SymbolTable *t, STMT *s);
 char *getEXPType(SymbolTable *t, EXP *e);
 void checkSTMTType(SymbolTable *t, STMT *s);
 
+void evalEXP(SymbolTable *t, EXP *e);
+void evalSTMT(SymbolTable *t, STMT *s);
+

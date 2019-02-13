@@ -14,7 +14,7 @@ then
 	exit 1
 fi
 
-if [[ "|scan|tokens|parse|pretty|symbol|typecheck|" != *"|$1|"* ]]
+if [[ "|scan|tokens|parse|pretty|symbol|typecheck|codegen|" != *"|$1|"* ]]
 then
 	echo "Unknown mode \"$1\""
 	echo "Usage: $0 <mode> <file>"
@@ -24,4 +24,9 @@ then
 
 fi
 
-./src/minic "$1" < "$2"
+if [ "$1" = "codegen" ]
+then
+	./src/minic "$1" "$2" < "$2"
+else
+	./src/minic "$1" < "$2"
+fi

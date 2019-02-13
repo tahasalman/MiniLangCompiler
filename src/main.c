@@ -7,16 +7,14 @@
 int g_tokens = 0;
 int print_symbol = 0;
 STMT *root;
+FILE *outFile;
+
 
 void yyparse();
 int yylex();
 int main(int argc, char **argv)
 {
-	if (argc !=2){
-		fprintf(stderr,"Invalid number of arguments!");
-		return 1;
-	}
-	
+		
     if(strcmp(argv[1], "tokens") == 0){
 		g_tokens = 1;
 		while(yylex());
@@ -44,6 +42,31 @@ int main(int argc, char **argv)
 		SymbolTable *t = initSymbolTable();
 		checkSTMTType(t,root);
 		printf("OK\n");
+	}
+	else if (strcmp(argv[1],"codegen") == 0) {	
+		if (argc != 3){
+			fprintf(stderr,"Please enter a .min file as an argument to run codegen on!");
+			return 1;
+		}
+		char *filename = argv[2];
+		yyparse();
+		SymbolTable *t = initSymbolTable();
+		checkSTMTType(t,root); 
+
+		
+		filename[strlen(filename)-4] =0;
+		filename = strcat(filename,".c");
+		
+		outFile = fopen(filename,"w");
+		
+		fprintf(outFile,"#include <stdio.h>\n#include<stdlib.h>\n\nint main(){\n");
+		SymbolTable *t2 = initSymbolTable();
+		evalSTMT(t2,root);
+		
+		fprintf(outFile,"}");
+		fclose(outFile);
+		printf("OK\n");
+		
 	}
 	else{
 		fprintf(stderr, "Invalid compiler mode entered!");

@@ -7,7 +7,7 @@ var denominator: int =1;
 
 read(accuracyFactor);
 
-while(accuracyFactor){
+while(accuracyFactor > 0){
 
 	if (negate){
 		numerator = -1;
